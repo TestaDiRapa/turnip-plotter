@@ -4,7 +4,7 @@ import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 
 
-colors = ['red', 'green', 'blue', 'yellow', 'black']
+colors = ['red', 'green', 'blue', 'black']
 
 
 def real_time_plot(fig, buffers, sub_plots):

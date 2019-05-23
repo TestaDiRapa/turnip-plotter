@@ -11,7 +11,7 @@ def initialize_serial(port):
     with serial.Serial(port) as device:
         for i in range(100):
             line = device.readline().decode('utf-8')
-            if re.search(r'^-?\d+(\.\d+)?(\t-?\d+(\.\d+)?)+\r?\n$', line):
+            if re.search(r'^-?\d+(\.\d+)?(\t-?\d+(\.\d+)?)*\r?\n$', line):
                 break
         else:
             raise Exception("Wrong data format!")
@@ -26,7 +26,7 @@ def read_from_serial(buffers):
         while True:
             line = re.sub('\r', '', re.sub('\n', '', device.readline().decode('utf-8')))
             try:
-                values = [int(x) for x in line.split('\t')]
+                values = [eval(x) for x in line.split('\t')]
                 for j in range(len(buffers)):
                     buffers[j].pop(0)
                     buffers[j].append(values[j])
