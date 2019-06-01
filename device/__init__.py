@@ -21,7 +21,7 @@ def initialize_serial(port):
 
 def read_from_serial(buffers):
     with serial.Serial('/dev/ttyACM0') as device:
-        while not re.search(r'^-?\d+(\.\d+)?(\t-?\d+(\.\d+)?)+\r?\n$', device.readline().decode('utf-8')):
+        while not re.search(r'^-?\d+(\.\d+)?(\t-?\d+(\.\d+)?)*\r?\n$', device.readline().decode('utf-8')):
             pass
         while True:
             line = re.sub('\r', '', re.sub('\n', '', device.readline().decode('utf-8')))
